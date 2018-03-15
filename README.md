@@ -1,6 +1,6 @@
 # How to start the project?
 
-Clone or download this repository and open index.html . Also you can check it out **[online](https://dimafeoktistov.github.io/reader-test)**.
+Clone or download this repository and open index.html . Also you can check it out **[online](https://dimafeoktistov.github.io/reader-test)**. However to see the results online you would have to turn on AJAX scripts at the page.
 
 # What does test includes?
 
