@@ -26,9 +26,8 @@ $(function() {
       expect(allFeeds.length).not.toBe(0);
     });
 
-    /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
+    /* This test takes in an array where all feeds are stored and loops through
+       it and verify that url of each feed are defined and not empty.
          */
 
     it('URLs are defined and not empty', function() {
@@ -38,9 +37,8 @@ $(function() {
       });
     });
 
-    /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
+    /*  This test takes in an array where all feeds are stored and loops through
+       it and verify that name of each feed are defined and not empty.
          */
 
     it('name of feed is not empty and defined', function() {
@@ -51,24 +49,17 @@ $(function() {
     });
   });
 
-  /* TODO: Write a new test suite named "The menu" */
+  /* Test suite that ensures proper behaviour of menu */
 
-  describe('Menu', function() {
-    /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+  describe('The menu', function() {
+    /* This test checks if menu is hidden by default */
 
     it('hidden by default', function() {
       expect(document.body.className).toContain('menu-hidden');
     });
 
-    /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+    /* This test ensures that when menu is clicked it appears and hides on other click */
+
     it('visible when clicked', function() {
       $('a.menu-icon-link').click();
       expect(document.body.className).not.toContain('menu-hidden');
@@ -80,7 +71,7 @@ $(function() {
     });
   });
 
-  /* TODO: Write a new test suite named "Initial Entries" */
+  /* This test ensures that there is at least 1 entry within feed container*/
   describe('Initial Entries', function() {
     let entry;
     beforeEach(function(done) {
@@ -88,38 +79,32 @@ $(function() {
         done();
       });
     });
-    /* TODO: Write a test that ensures when the loadFeed
-       * function is called and completes its work, there is at least
-       * a single .entry element within the .feed container.
-       * Remember, loadFeed() is asynchronous so this test will require
-       * the use of Jasmine's beforeEach and asynchronous done() function.
-       */
+
     it('is present', function(done) {
-      entry = Array.from(document.querySelectorAll('.entry'));
+      entry = $('.feed .entry');
       expect(entry).not.toBe(undefined);
       expect(entry).not.toBe(0);
       done();
     });
   });
-  /* TODO: Write a new test suite named "New Feed Selection" */
+  /* Checks if one feed is differs from another */
   describe('New Feed Selection', function() {
     let content;
 
     beforeEach(function(done) {
-      loadFeed(1, function() {
-        content = $('.feed').html();
-        done();
+      loadFeed(0, function() {
+        // feed 0 done loading
+        firstFeed = $('.feed').html();
+        loadFeed(1, function() {
+          //feed 1 done loading
+          secondFeed = $('.feed').html();
+          done();
+        });
       });
     });
-    /* TODO: Write a test that ensures when a new feed is loaded
-       * by the loadFeed function that the content actually changes.
-       * Remember, loadFeed() is asynchronous.
-       */
-    it('loaded and changes the content', function(done) {
-      loadFeed(0, function() {
-        expect($('.feed').html()).not.toEqual(content);
-        done();
-      });
+    /* Test that checks changing of content   */
+    it('loaded and changes the content', function() {
+      expect(firstFeed).not.toEqual(secondFeed);
     });
   });
 });
