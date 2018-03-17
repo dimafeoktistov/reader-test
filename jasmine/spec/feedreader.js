@@ -62,12 +62,12 @@ $(function() {
 
     it('visible when clicked', function() {
       $('a.menu-icon-link').click();
-      expect(document.body.className).not.toContain('menu-hidden');
+      expect($('body').hasClass('menu-hidden')).not.toBe(true);
     });
 
     it('not visible when clicked again', function() {
       $('a.menu-icon-link').click();
-      expect(document.body.className).toContain('menu-hidden');
+      expect($('body').hasClass('menu-hidden')).toBe(true);
     });
   });
 
@@ -83,7 +83,7 @@ $(function() {
     it('is present', function(done) {
       entry = $('.feed .entry');
       expect(entry).not.toBe(undefined);
-      expect(entry).not.toBe(0);
+      expect(entry.length).not.toBe(0);
       done();
     });
   });
