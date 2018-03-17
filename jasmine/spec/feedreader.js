@@ -55,7 +55,7 @@ $(function() {
     /* This test checks if menu is hidden by default */
 
     it('hidden by default', function() {
-      expect(document.body.className).toContain('menu-hidden');
+      expect($('body').hasClass('menu-hidden')).toBe(true);
     });
 
     /* This test ensures that when menu is clicked it appears and hides on other click */
